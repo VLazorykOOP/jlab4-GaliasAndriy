@@ -1,11 +1,8 @@
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Scanner;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
 
 public class Main {
     public static void main(String[] args) {
@@ -22,37 +19,33 @@ public class Main {
             String line;
             ArrayList<String> lines = new ArrayList<String>();
             while ((line = reader.readLine()) != null) {
+                if (line.trim().isEmpty()) {
+                    continue; // skip empty lines
+                }
                 lines.add(line);
-            }
-
-            boolean isNumericLine = true;
-            for (String eachLine : lines) {
-                for (char c : eachLine.toCharArray()) {
-                    if (!Character.isDigit(c) && c != ' ' && c != '-') {
-                        isNumericLine = false;
-                        break;
-                    }
-                }
-                if (isNumericLine) {
-                    System.out.println(eachLine);
-                } else {
-                    String[] words = eachLine.split(" ");
-                    Collections.reverse(Arrays.asList(words));
-                    String reversedLine = String.join(" ", words);
-                    lines.add(reversedLine);
-                }
             }
             reader.close(); // close a file
 
-            System.out.print("Enter the name of the output file: ");
-            String outputFileName = in.next();
-            BufferedWriter writer = new BufferedWriter(new FileWriter(outputFileName));
-            for (String reversedLine : lines) {
-                writer.write(reversedLine + "\n");
+            for (String l : lines) {
+                String[] tmp = l.split(" ");
+                boolean isIntegerLine = true;
+                for (String s : tmp) {
+                    try {
+                        Integer.parseInt(s);
+                    } catch (NumberFormatException e) {
+                        System.out.println("Line " + l + " contains a non-integer value: " + e.getMessage());
+                        isIntegerLine = false;
+                        break;
+                    }
+                }
+                if (isIntegerLine) {
+                    System.out.println(l);
+                }
             }
-            writer.close();
-        } catch (Exception err) {
-            System.out.println("Error: ");
+        } catch (FileNotFoundException e) {
+            System.out.println("Error: The file " + e.getMessage() + " was not found.");
+        } catch (IOException e) {
+            System.out.println("Error: " + e.getMessage());
         }
     }
 }
