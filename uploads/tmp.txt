@@ -1,25 +1,4 @@
-//            while ((line = reader.readLine()) != null) {
-//                // check if the line represents a whole number
-//                if (line.matches("\\d+")) {
-//                    sum += Integer.parseInt(line);
-//                } else {
-//                    // split the line into words, reverse their order, and join them back
-//                    String[] words = line.split(" ");
-//                    Collections.reverse(Arrays.asList(words));
-//                    String reversedLine = String.join(" ", words);
-//                    lines.add(reversedLine);
-//                }
-//            }
-//            reader.close(); // close a file
-//
-//            // print the sum of all whole numbers found in the file
-//            System.out.println("Sum of all whole numbers: " + sum);
-//
-//            // write the lines with reversed word order to a file specified by the user
-//            System.out.print("Enter the name of the output file: ");
-//            String outputFileName = in.next();
-//            BufferedWriter writer = new BufferedWriter(new FileWriter(outputFileName));
-//            for (String reversedLine : lines) {
-//                writer.write(reversedLine + "\n");
-//            }
-//            writer.close();
+mango grape mandarin lemon blackberry blueberry strawberry pineapple kiwi orange maple juice apple banana
+123 apple
+2 banana 1 apple 123
+next k22 23k 2a3k

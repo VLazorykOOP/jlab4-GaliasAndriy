@@ -1,7 +1,5 @@
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.Scanner;
 
 public class Main {
@@ -11,37 +9,24 @@ public class Main {
         try {
             System.out.println(" Enter file that you want to test:");
             System.out.println("    1) ./uploads/test.txt ");
+            System.out.println("    2) ./uploads/tmp.txt ");
             System.out.print(" Your choice: ");
             String fileName = in.next();
 
             // open a file for reading
             BufferedReader reader = new BufferedReader(new FileReader(fileName));
-            String line;
             ArrayList<String> lines = new ArrayList<String>();
-            while ((line = reader.readLine()) != null) {
-                if (line.trim().isEmpty()) {
-                    continue; // skip empty lines
-                }
-                lines.add(line);
-            }
-            reader.close(); // close a file
 
-            for (String l : lines) {
-                String[] tmp = l.split(" ");
-                boolean isIntegerLine = true;
-                for (String s : tmp) {
-                    try {
-                        Integer.parseInt(s);
-                    } catch (NumberFormatException e) {
-                        System.out.println("Line " + l + " contains a non-integer value: " + e.getMessage());
-                        isIntegerLine = false;
-                        break;
-                    }
-                }
-                if (isIntegerLine) {
-                    System.out.println(l);
-                }
-            }
+            FileBufferedReader.moveLinesIntoArrayList(lines, fileName); // Move file lines of data in ArrayList
+
+            System.out.println("Enter name for a file with reversed lines: ");
+            System.out.println(" It should be saved inside a folder ./saves/ ");
+            System.out.print(" Enter file name: ");
+            fileName = in.next();
+            in.close();
+
+            SumLinesOfIntegers.checkEveryLine(lines, fileName); // Check every line in ArrayList on consisting of Integers
+
         } catch (FileNotFoundException e) {
             System.out.println("Error: The file " + e.getMessage() + " was not found.");
         } catch (IOException e) {
