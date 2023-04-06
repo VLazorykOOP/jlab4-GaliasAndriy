@@ -14,9 +14,7 @@ public class Main {
             String fileName = in.next();
 
             // open a file for reading
-            BufferedReader reader = new BufferedReader(new FileReader(fileName));
             ArrayList<String> lines = new ArrayList<String>();
-
             FileBufferedReader.moveLinesIntoArrayList(lines, fileName); // Move file lines of data in ArrayList
 
             System.out.println("Enter name for a file with reversed lines: ");
