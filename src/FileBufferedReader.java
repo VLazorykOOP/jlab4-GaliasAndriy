@@ -15,4 +15,16 @@ public class FileBufferedReader {
         }
         reader.close(); // close a file
     }
+    public static int countCharacters(String fileName) throws IOException{
+        int count = 0;
+        BufferedReader reader = new BufferedReader(new FileReader(fileName));
+        int c;
+        while ((c = reader.read()) != -1) {
+            if (!Character.isWhitespace(c) && c!= '^') {
+                count++;
+            }
+        }
+        reader.close();
+        return count;
+    }
 }
