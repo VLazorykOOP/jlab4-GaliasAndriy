@@ -19,7 +19,18 @@ public class FileBufferedReader {
         int count = 0;
         BufferedReader reader = new BufferedReader(new FileReader(fileName));
         int c;
+        boolean skipNextChar = false;
         while ((c = reader.read()) != -1) {
+            if (skipNextChar){
+                skipNextChar = false;
+                if (c == '\n') {
+                    continue;
+                }
+            }
+            if (c == '\r') {
+                skipNextChar = true;
+                continue;
+            }
             if (!Character.isWhitespace(c) && c!= '^') {
                 count++;
             }
