@@ -15,12 +15,14 @@ public class FileBufferedReader {
         }
         reader.close(); // close a file
     }
-    public static int countCharacters(ArrayList<String> lines) throws IOException{
+    public static int countCharacters(ArrayList<String> lines) {
         int count = 0;
-        for (String l : lines) {
-            String[] tmp = l.split("\\r?\\n|\\r|\\s");
-            for (String s : tmp) {
-                count++;
+        for (String line : lines) {
+            String[] words = line.split("\\s+");
+            for (String s : words) {
+                if (!s.contains("\r") && !s.contains("\n")) {
+                    count += s.length();
+                }
             }
         }
         return count;
