@@ -5,6 +5,7 @@ import java.io.IOException;
 public class SumLinesOfIntegers {
     public static void checkEveryLine(ArrayList<String> lines, String reversedFile) {
         FileWriter saveFile = null;
+        System.out.println("tmp");
         try {
             saveFile = new FileWriter(reversedFile);
 
@@ -12,6 +13,7 @@ public class SumLinesOfIntegers {
                 String[] tmp = l.split(" ");
                 boolean isIntegerLine = true;
                 int sum = 0;
+                System.out.println(tmp);
                 for (String s : tmp) {
                     try {
                         int num = Integer.parseInt(s);
@@ -33,9 +35,9 @@ public class SumLinesOfIntegers {
                     String reversedLine = sb.toString().trim();
                     saveFile.write(reversedLine + "\n");
                 }
-            }
-        } catch (IOException e) {
+            }} catch (IOException e) {
             System.out.println("Error writing to file: " + e.getMessage());
+
         } finally {
             try {
                 if (saveFile != null) {
